@@ -21,7 +21,7 @@ public class LibraryController {
     }
 
     @GetMapping("/getAllLibrarys")
-    public List<Library> getAllBooks(){
+    public List<Library> getAllLibrarys(){
         return this.libraryService.readAllLibrarys();
     }
 
@@ -31,23 +31,18 @@ public class LibraryController {
     }
 
     @DeleteMapping("/deleteLibrary/{id}")
-    public Boolean deleteBook(@PathVariable Long id){
+    public Boolean deleteLibrarys(@PathVariable Long id){
         return this.libraryService.deleteLibraryById(id);
     }
-/*
 
-    @GetMapping("/getBookById/{id}")
-    public Book getBookById(@PathVariable Long id){
-        return this.bookService.findBookById(id);
+    @GetMapping("/getLibraryById/{id}")
+    public Library getLibraryById(@PathVariable Long id){
+        return this.libraryService.findLibraryById(id);
     }
 
-    @PutMapping("/updateBook/{id}")
-    public Book updateBook(@PathVariable Long id, @RequestBody Book book){
-        return this.bookService.updateBook(id, book);
+    @PutMapping("/updateLibrary/{id}")
+    public Library updateLibrary(@PathVariable Long id, @RequestBody Library library){
+        return this.libraryService.updateLibrary(id, library);
     }
-    @PutMapping("/updateBookWithPathParam")
-    public Book updateBookWithPathParam(@PathParam("id") Long id, @RequestBody Book book) {
-        // localhost:8080/updateBookWithPathParam?id=1
-        return this.bookService.updateBook(id, book);
-    }*/
+
 }
