@@ -1,6 +1,7 @@
 package com.qa.papers.service;
 
 import com.qa.papers.domain.Book;
+import com.qa.papers.exceptions.BookNotFoundException;
 import com.qa.papers.repo.BooksRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,23 @@ public class BookService {
     }
 
     public Book findBookById(Long id){
-        return this.repo.findById(id).orElseThrow();
+        return this.repo.findById(id).orElseThrow(BookNotFoundException::new);
     }
+
+    public Book updateBook(Long id, Book book){
+        Book update = findBookById(id);
+        update.setTitle(book.getTitle());
+        update.setDescription(book.getDescription());
+        return this.repo.save(update);
+    }
+
+    public Boolean deleteBookById(Long id){
+        if(!this.repo.existsById(id)){
+            throw new BookNotFoundException();
+
+        }
+        this.repo.deleteById(id);
+        return this.repo.existsById(id);
+    }
+
 }
