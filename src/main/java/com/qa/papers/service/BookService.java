@@ -21,7 +21,11 @@ public class BookService {
         return this.repo.findAll();
     }
 
+    public Book createBook(Book book){
+        return this.repo.save(book);
+    }
 
-
-
+    public Book findBookById(Long id){
+        return this.repo.findById(id).orElseThrow();
+    }
 }
