@@ -5,6 +5,7 @@ import com.qa.papers.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RestController
@@ -36,5 +37,15 @@ public class BooksController {
     @GetMapping("/getBookById/{id}")
     public Book getBookById(@PathVariable Long id){
         return this.bookService.findBookById(id);
+    }
+
+    @PutMapping("/updateBook/{id}")
+    public Book updateBook(@PathVariable Long id, @RequestBody Book book){
+        return this.bookService.updateBook(id, book);
+    }
+    @PutMapping("/updateBookWithPathParam")
+    public Book updateBookWithPathParam(@PathParam("id") Long id, @RequestBody Book book) {
+        // localhost:8080/updateBookWithPathParam?id=1
+        return this.bookService.updateBook(id, book);
     }
 }
