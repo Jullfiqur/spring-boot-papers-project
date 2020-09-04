@@ -1,10 +1,7 @@
 package com.qa.papers.domain;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Book {
@@ -18,6 +15,9 @@ public class Book {
 
    @Column
     private String description;
+
+    @ManyToOne(targetEntity = Library.class)
+    private Library library;
 
     public Book() {
     }
@@ -49,6 +49,14 @@ public class Book {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Library getLibrary() {
+        return library;
+    }
+
+    public void setLibrary(Library library) {
+        this.library = library;
     }
 }
 

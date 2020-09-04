@@ -1,9 +1,8 @@
 package com.qa.papers.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Library {
@@ -14,6 +13,11 @@ public class Library {
 
     @Column
     private String name;
+
+
+    @OneToMany(mappedBy = "library", fetch = FetchType.LAZY)
+    private List<Book> books = new ArrayList<>();
+
 
     public Library() {
     }
@@ -38,5 +42,12 @@ public class Library {
         this.name = name;
     }
 
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
+    }
 }
 
