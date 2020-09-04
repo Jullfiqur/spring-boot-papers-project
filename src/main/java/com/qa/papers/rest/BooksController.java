@@ -32,4 +32,9 @@ public class BooksController {
         return this.bookService.deleteBookById(id);
     }
 
+
+    @GetMapping("/getBookById/{id}")
+    public Book getBookById(@PathVariable Long id){
+        return this.bookService.findBookById(id);
+    }
 }
