@@ -2,9 +2,12 @@ package com.qa.papers.rest;
 
 import com.qa.papers.domain.Book;
 import com.qa.papers.domain.Library;
+import com.qa.papers.dto.LibraryDTO;
 import com.qa.papers.service.BookService;
 import com.qa.papers.service.LibraryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.websocket.server.PathParam;
@@ -12,6 +15,7 @@ import java.util.List;
 
 @RestController
 public class LibraryController {
+
 
     private final LibraryService libraryService;
 
@@ -21,13 +25,13 @@ public class LibraryController {
     }
 
     @GetMapping("/getAllLibrarys")
-    public List<Library> getAllLibrarys(){
-        return this.libraryService.readAllLibrarys();
+    public ResponseEntity<List<LibraryDTO>> getAllLibrarys(){
+        return ResponseEntity.ok(this.libraryService.readAllLibrarys());
     }
 
     @PostMapping("/createLibrary")
-    public Library createLibrary(@RequestBody Library library){
-        return this.libraryService.createLibrary(library);
+    public ResponseEntity<LibraryDTO> createLibrary(@RequestBody Library library){
+        return new ResponseEntity<LibraryDTO>(this.libraryService.createLibrary(library), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/deleteLibrary/{id}")
@@ -36,13 +40,13 @@ public class LibraryController {
     }
 
     @GetMapping("/getLibraryById/{id}")
-    public Library getLibraryById(@PathVariable Long id){
-        return this.libraryService.findLibraryById(id);
+    public ResponseEntity<LibraryDTO> getLibraryById(@PathVariable Long id){
+        return ResponseEntity.ok(this.libraryService.findLibraryById(id));
     }
 
     @PutMapping("/updateLibrary/{id}")
-    public Library updateLibrary(@PathVariable Long id, @RequestBody Library library){
-        return this.libraryService.updateLibrary(id, library);
+    public ResponseEntity<LibraryDTO> updateLibrary(@PathVariable Long id, @RequestBody Library library){
+        return ResponseEntity.ok(this.libraryService.updateLibrary(id, library));
     }
 
 }
