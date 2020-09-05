@@ -27,6 +27,7 @@ public class LibraryController {
         return ResponseEntity.ok(this.libraryService.readAllLibrarys());
     }
 
+    @CrossOrigin(origins = "*")
     @PostMapping("/createLibrary")
     public ResponseEntity<LibraryDTO> createLibrary(@RequestBody Library library){
         return new ResponseEntity<LibraryDTO>(this.libraryService.createLibrary(library), HttpStatus.CREATED);

@@ -18,7 +18,7 @@ function displayLibrarys(){
                     // adding title to the body of the page
                     let elem = document.createElement('div');
                     let header = document.createElement('h1');
-                    header.textContent = "Library name: " + el.name+"(id of library)"+el.id;
+                    header.textContent = "Library name: " + el.name+"id of library"+el.id;
                     elem.appendChild(header);
                     el.books.forEach(book => {
                         console.log(book) // print all books for each library

@@ -1,20 +1,26 @@
-function submitLibrary(){
+function submitBook(){
     let elements = document.getElementById("booksForm").elements;
     let obj ={};
-    for(let i = 0 ; i < elements.length - 1 ; i++){
+    console.log(elements)
+    for(let i = 0 ; i < elements.length ; i++){
         let item = elements.item(i);
         obj[item.name] = item.value;
     }
-
+    console.log(obj.name)
     const req = new XMLHttpRequest();
-    req.open("POST", "http://localhost:8080/createBook");
+    req.open("POST", "http://localhost:8080/createLibrary");
     req.onload = () => {
         if (req.status === 200 && req.readyState == 4) {
             console.log("Server Responded with: " + req.responseText);
         } else {
-            console.log("Oops...");
+            console.log(req.status);
         }
     };
     req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    req.send(JSON.stringify({ title: obj.title, description: obj.description, library:{ id: Number(obj.libraryId)} }));
+    req.send(JSON.stringify(
+        {
+            "name":obj.name
+        }
+        )
+    );
 }
