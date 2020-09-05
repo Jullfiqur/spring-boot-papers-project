@@ -1,15 +1,13 @@
 package com.qa.papers.rest;
-
 import com.qa.papers.domain.Book;
+import com.qa.papers.service.BookService;
 import com.qa.papers.domain.Library;
 import com.qa.papers.dto.LibraryDTO;
-import com.qa.papers.service.BookService;
 import com.qa.papers.service.LibraryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import javax.websocket.server.PathParam;
 import java.util.List;
 
